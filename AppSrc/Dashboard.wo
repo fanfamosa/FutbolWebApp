@@ -1,0 +1,77 @@
+﻿Use cWebView.pkg
+Use cWebPanel.pkg
+Use cWebHtmlBox.pkg
+
+Object oDashboard is a cWebView
+    Set piMaxWidth to 1024
+    Set psCaption to "Dashboard"
+    Set peViewType to vtUndefined
+    Set pbShowCaption to False
+
+    // Rutas de navegación FORWARD desde el Dashboard
+    WebRegisterPath ntNavigateForward oJugadorView
+    WebRegisterPath ntNavigateForward oEquipoView
+    WebRegisterPath ntNavigateForward oEntrenadorView
+    WebRegisterPath ntNavigateForward oLigaView
+    WebRegisterPath ntNavigateForward oPosicionView
+
+    Object oWebMainPanel is a cWebPanel
+        Set piColumnCount to 12
+
+        // JUGADORES
+        Object oJugadoresTile is a cWebHtmlBox
+            Set piColumnSpan to 6
+            Set psCSSClass to "Tile Light"
+            Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="view" style="cursor: pointer;"><div class="Tile_Title">Jugadores</div><div class="Tile_Subtitle">Gestión</div></div>'
+            Set pbServerOnClick to True
+            Procedure OnClick String sId String sParam
+                Send NavigatePath oJugadorView
+            End_Procedure
+        End_Object
+
+        // EQUIPOS
+        Object oEquiposTile is a cWebHtmlBox
+            Set piColumnSpan to 6
+            Set psCSSClass to "Tile Light"
+            Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="view" style="cursor: pointer;"><div class="Tile_Title">Equipos</div><div class="Tile_Subtitle">Ver todos</div></div>'
+            Set pbServerOnClick to True
+            Procedure OnClick String sId String sParam
+                Send NavigatePath oEquipoView
+            End_Procedure
+        End_Object
+
+        // ENTRENADORES
+        Object oEntrenadoresTile is a cWebHtmlBox
+            Set piColumnSpan to 6
+            Set psCSSClass to "Tile Light"
+            Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="view" style="cursor: pointer;"><div class="Tile_Title">Entrenadores</div><div class="Tile_Subtitle">Ver todos</div></div>'
+            Set pbServerOnClick to True
+            Procedure OnClick String sId String sParam
+                Send NavigatePath oEntrenadorView
+            End_Procedure
+        End_Object
+
+        // LIGAS
+        Object oLigasTile is a cWebHtmlBox
+            Set piColumnSpan to 6
+            Set psCSSClass to "Tile Light"
+            Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="view" style="cursor: pointer;"><div class="Tile_Title">Ligas</div><div class="Tile_Subtitle">Ver todos</div></div>'
+            Set pbServerOnClick to True
+            Procedure OnClick String sId String sParam
+                Send NavigatePath oLigaView
+            End_Procedure
+        End_Object
+
+        // POSICIONES
+        Object oPosicionesTile is a cWebHtmlBox
+            Set piColumnSpan to 6
+            Set psCSSClass to "Tile Light"
+            Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="view" style="cursor: pointer;"><div class="Tile_Title">Posiciones</div><div class="Tile_Subtitle">Ver todos</div></div>'
+            Set pbServerOnClick to True
+            Procedure OnClick String sId String sParam
+                Send NavigatePath oPosicionView
+            End_Procedure
+        End_Object
+
+    End_Object
+End_Object
