@@ -1,0 +1,1 @@
+Al estar la vista de detalle de un registro hijo (feature/jugador) y se abre una lista de selección de la tabla padre (feature/equipo). Al volver mediante la navegación hacia atrás, el objeto de origen captura los datos modificados mediante el evento OnNavigateBack, actualizando automáticamente el Data Dictionary para enlazar el nuevo padre al registro del jugador.
