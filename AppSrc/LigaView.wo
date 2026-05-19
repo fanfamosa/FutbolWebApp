@@ -62,6 +62,22 @@ Object oLigaView is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "EquiposMax"
         End_Object 
+        
+        Object oBtnVerEquipos is a cWebButton
+    Set psCaption to "Ver Equipos de esta Liga"
+    Set piColumnSpan to 0
+    
+    Procedure OnClick
+        Send NavigateForward of oSelectEquipos Self
+    End Procedure
+    Procedure OnGetNavigateForwardData tWebNavigateData ByRef ltNavigateData
+        RowID riLiga
+        Get CurrentRowId of oLiga_DD to riLiga
+        Move ntNavigateForward to ltNavigateData.eNavigateType
+        Move (SerializeRowID(riLiga)) to ltNavigateData.sRowID
+    End Procedure
+        
+End Object
     End_Object 
 
 End_Object 
