@@ -62,6 +62,60 @@ Object oLigaView is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "EquiposMax"
         End_Object 
+        
+        Object oBtnVerEquipos is a cWebButton
+    Set psCaption to "Ver Equipos de esta Liga"
+    Set piColumnSpan to 0
+    
+    Procedure OnClick
+        Send NavigateForward of oSelectEquipos Self
+    End Procedure
+    Procedure OnGetNavigateForwardData tWebNavigateData ByRef ltNavigateData
+        RowID riLiga
+        Get CurrentRowId of oLiga_DD to riLiga
+        Move ntNavigateForward to ltNavigateData.eNavigateType
+        Move (SerializeRowID(riLiga)) to ltNavigateData.sRowID
+    End Procedure
+        
+End Object
+    
+    Use oLiga_DD.dd
+Use oEquipo_DD.dd
+
+Object oLiga_View is a cWebView
+    Object oLiga_DD is a Liga_DataDictionary
+    End_Object
+
+    Object oEquipo_DD is a Equipo_DataDictionary
+        Set Set_Server_Side_Relative to True
+      
+        Set Constrain_file to Liga.File_Number 
+    End_Object
+
+    Set Main_DD to oLiga_DD
+    Set Server to oLiga_DD
+
+
+    Object oEquiposGrid is a cWebGrid
+        Set pbDataAware to True 
+        Set Server to oEquipo_DD 
+        Set piColumnSpan to 0
+        Set piMinHeight to 200
+
+        Object oEquipo_Nombre is a cWebColumn
+            Entry_Item Equipo.Nombre
+            Set psCaption to "Nombre del Equipo"
+            Set piWidth to 50
+        EndObject
+
+        Object oEquipo_Estadio is a cWebColumn
+            Entry_Item Equipo.Estadio
+            Set psCaption to "Estadio"
+            Set piWidth to 50
+        EndObject
+    End_Object
+        End_Object
+        
     End_Object 
 
 End_Object 

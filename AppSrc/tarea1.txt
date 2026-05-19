@@ -1,0 +1,1 @@
+Cuando se navega en cascada, el InvokingObject es el componente de la vista de origen que desencadena la acción. Su rol es crucial porque implementa el evento OnGetNavigateForwardData para empaquetar los datos necesarios en el struct tWebNavigateData antes de abrir la siguiente interfaz

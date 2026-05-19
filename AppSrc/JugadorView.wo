@@ -72,6 +72,50 @@ Object oJugadorView is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "EquipoID"
         End_Object 
+        
+        Object oJugador_View is a cWebView
+    Object oPosicion_DD is a Posicion_DataDictionary
+    End_Object
+
+    Object oJugador_DD is a Jugador_DataDictionary
+        Set Server to oPosicion_DD
+    End_Object
+
+    Set Main_DD to oJugador_DD
+    Set Server to oJugador_DD
+
+   
+    Object oJugadorPosicion is a cWebForm
+        Entry_Item Posicion.Nombre
+        Set psCaption to "Posición de Juego:"
+        Set pbReadOnly to True 
+    End_Object
+
+ 
+    Object oBtnBuscarPosicion is a cWebButton
+        Set psCaption to "Buscar Posición..."
+        
+        Procedure OnClick
+          
+            Send NavigateForward of oSelectPosiciones Self
+        End_Procedure
+
+       
+        Procedure OnGetNavigateForwardData tWebNavigateData ByRef ltNavigateData
+            Move ntNavigateForward to ltNavigateData.eNavigateType [cite: 26]
+       
+            Move False to ltNavigateData.bNewRecord [cite: 30]
+        End_Procedure
+
+  
+        Procedure OnNavigateBack tWebNavigateData ltNavigateData
+       
+            If (ltNavigateData.sRowID <> "") Begin [cite: 29]
+                Send FindByRowId of oPosicion_DD Posicion.File_Number (DeserializeRowID(ltNavigateData.sRowID))
+            End
+        End_Procedure
+    End_Object
+End_Object
     End_Object 
 
 End_Object 
